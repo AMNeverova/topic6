@@ -10,4 +10,15 @@ let checkAlfinMove = (startPoint, endPoint) => {
     return isPossible;
 }
 
-console.log(checkAlfinMove('d6', 'e5'));
+let checkAlfinMoveAgain = (startPoint, endPoint) => {
+    let isPossible = false;
+    let startPointNumber = parseInt(startPoint.charCodeAt(0) + startPoint[1])
+    let endPointNumber = parseInt(endPoint.charCodeAt(0) + endPoint[1])
+    let diff = Math.abs(endPointNumber - startPointNumber);
+    if (diff % 9 == 0 || diff % 11 == 0 ) {
+        isPossible = true;
+    } 
+    return isPossible;
+}
+
+console.log(checkAlfinMoveAgain('h1', 'h1'));

@@ -23,6 +23,8 @@ let checkPossibleEquality = (string1, string2) => {
                 }
             }
         }
+    } else {
+        isPossible = false;
     }
     return isPossible;
 }
