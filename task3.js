@@ -1,32 +1,25 @@
-let checkPossibleEquality = (string1, string2) => {
-    let array1 = string1.split('');
-    array1.unshift('');
-    let array2 = string2.split('');
-    array2.unshift('');
+const checkPossibleEquality = (string1, string2) => {
+    let array1 = string1.toLowerCase().split('');
+    let array2 = string2.toLowerCase().split('');
     let isPossible = true;
-    if (array1.length == array2.length) {
-        for (let i = 0; i < array1.length; i++) {
-            if (i % 2 == 0) {
-                if (array2.indexOf(array1[i]) % 2 == 0) {
-                    continue;
-                } else {
-                    isPossible = false;
-                    break;
-                }
-            }
-            if (i % 2 == 1) {
-                if (array2.indexOf(array1[i]) % 2 == 1) {
-                    continue;
-                } else {
-                    isPossible = false;
-                    break;
-                }
-            }
+    if (array1.length !== array2.length) {
+        return false;
+    }
+    array1Even = array1.filter((letter, index, array) => index % 2 == 0).sort();
+    array1Odd = array1.filter((letter, index, array) => index % 2 == 1).sort();
+    array1Full = array1Even.concat(array1Odd)
+    array2Even = array2.filter((letter, index, array) => index % 2 == 0).sort();
+    array2Odd = array2.filter((letter, index, array) => index % 2 == 1).sort();
+    array2Full = array2Even.concat(array2Odd);
+
+    for (let i = 0; i < array1Full.length; i++) {
+        if (array1Full[i] == array2Full[i]) {
+            continue
+        } else {
+            return false
         }
-    } else {
-        isPossible = false;
     }
     return isPossible;
 }
 
-console.log(checkPossibleEquality('qwe', 'ewqr'));
+console.log(checkPossibleEquality('qWerty', 'ytqwer'));
